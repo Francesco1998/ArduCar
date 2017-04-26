@@ -137,10 +137,15 @@ void Parsing(String stringa){
  }
  
 void loop() {
-  //String Android=  meetAndroid.receive();
-  //Parsing(Android);
+  char Android[3];
+  for(int i=0;i<3;i++)
+    Android[i]=' ';
+  meetAndroid.getString(Android);
+  if(Android[0]!=' '&&Android[1]!=' '&&Android[2]!=' ')
+     Serial.println(Android);
+  Parsing(Android);
 
-  for(int i=1; i<1000; i++)
+ /* for(int i=1; i<1000; i++)
     Parsing("1,0");
   for(int i=1; i<2000; i++)
     Parsing("2,0");
@@ -149,6 +154,7 @@ void loop() {
   for(int i=1; i<1000; i++)
     Parsing("1,1");
   for(int i=1; i<3000; i++)
-    Parsing("2,2");
+    Parsing("2,2");*/
   
 }
+
