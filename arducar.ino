@@ -20,7 +20,6 @@ MeetAndroid meetAndroid(rxPin,txPin,9600);
 
 void setup() {
   Serial.begin(9600); // open serial port to receive data
-
   /*pinMode(motorPin1, OUTPUT);
   pinMode(motorPin2, OUTPUT);*/
   pinMode(in1,OUTPUT);
@@ -39,10 +38,18 @@ void setup() {
   }*/
 
   // register callback function
-  //meetAndroid.registerFunction(moveCar, 'a');
+  meetAndroid.registerFunction(moveCar, 'a');
 }
 
+void moveCar(byte flag, byte numOfValues)
+{
+  int length = meetAndroid.stringLength();
+  char inputString[length];
+ 
+  meetAndroid.getString(inputString);
+  Parsing(inputString);
 
+}
 void Parsing(String stringa){
    String motore;
    String direzione;
@@ -137,13 +144,7 @@ void Parsing(String stringa){
  }
  
 void loop() {
-  char Android[3];
-  for(int i=0;i<3;i++)
-    Android[i]=' ';
-  meetAndroid.getString(Android);
-  if(Android[0]!=' '&&Android[1]!=' '&&Android[2]!=' ')
-     Serial.println(Android);
-  Parsing(Android);
+ meetAndroid.receive();
 
  /* for(int i=1; i<1000; i++)
     Parsing("1,0");
@@ -157,4 +158,3 @@ void loop() {
     Parsing("2,2");*/
   
 }
-
