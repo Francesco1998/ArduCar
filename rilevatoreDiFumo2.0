@@ -1,0 +1,23 @@
+int pin = 12;
+
+void setup() 
+{
+    Serial.begin(9600);
+    pinMode(pin, OUTPUT);           // set pin to input
+}
+ 
+void loop() 
+{
+  float vol;
+    int sensorValue = analogRead(A0);
+    vol=(float)sensorValue/1024;
+    
+      Serial.print("The gas density is ");
+      Serial.println(vol);
+      if(vol>0.50)
+      {
+        digitalWrite(pin, HIGH); 
+        tone(pin,1000,200); 
+      } 
+    delay(100);
+}
